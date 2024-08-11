@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Posici&oacute;n</title>
+    <link href="css/estilo1.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/JavaScript" src="js/geometry.js"></script> 
+    <script type="text/JavaScript" src="js/painting.js"></script> 
+    <script type="text/JavaScript" src="js/position.js"></script> 
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+</head>
+
+<body class="body">
+
+<table width="1040" height="25" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="encabezado">
+  <tr>
+    <td width="260" bgcolor="#FFFFFF"><div   align="center"><a style="color:black" href="index.html"        >Introducci&oacute;n</a ></div></td>
+    <td width="260" bgcolor="BurlyWood"><div align="center"><a style="color:black" href="posicion.html"     >Posici&oacute;n</a>     </div></td>
+    <td width="260" bgcolor="#FFFFFF"><div   align="center"><a style="color:black" href="triangulacion.html">Triangulaci&oacute;n</a></div></td>
+    <td width="260" bgcolor="#FFFFFF"><div   align="center"><a style="color:black" href="interseccion.html" >Intersecci&oacute;n</a> </div></td>
+  </tr>
+</table>
+<table width="1040px"  border="0" align="left" cellpadding="0" cellspacing="0" bgcolor="BurlyWood" class="encabezado">
+  <tr height = "500">
+    <td style="width:800px">
+      <canvas id="sampleCanvas" width="800px" height="450px" style= "background:bisque; align:left; vertical-align:top; margin:20px"></canvas>
+    </td>
+    <td style="width:200px; vertical-align:top">
+    
+        <form style="margin-top:30px">
+          <input type="checkbox" name="circuloArea"      style="align:left"  onclick=alert("Próximamente...")>Círculo de igual área.<br>
+          <input type="checkbox" name="circuloPerimetro" style="align:left"  onclick=alert("Próximamente...")>Círculo de igual perímetro.<br>
+          <input type="checkbox" name="puntoMedio"       style="align:left"  onclick=alert("Próximamente...")>Punto medio.<br>
+          <input type="checkbox" name="centroMasas"      style="align:left"  onclick=alert("Próximamente...")>Centro de masas.
+        </form> 
+     
+    </td>
+  <tr>
+    <td valign="top" bordercolor="0" style="padding:20px" >
+          <div align="left" >Se indica la posición de un punto relativa a un polígono:
+            <ol>
+              <li>Dibujar un polígono irregular marcando un conjunto de puntos mediante el uso del ratón.</li>
+              <li>Cerrar el polígono haciendo clic dentro del círculo que rodea al primer punto.</li>
+              <li>Al volver a pulsar el ratón se indicará si la pulsación ha sido realizada dentro o fuera del polígono.</li>
+            </ol>
+          <br>  
+
+          El cálculo del área se realiza mediante el produzto en cruz de los vértices tal y como se muestra en la siguiente ecuación:
+
+          $$
+          A = 
+              \frac{1}{2}
+              \left(
+              \begin{vmatrix} 
+                  x_1 & y_1 \\ x_2 & y_2 
+              \end{vmatrix}
+              +
+              \begin{vmatrix} 
+                  x_2 & y_2 \\ x_3 & y_3 
+              \end{vmatrix}
+              +
+              \cdots
+              +
+              \begin{vmatrix} 
+                  x_n & y_n \\ x_1 & y_1 
+              \end{vmatrix}
+              \right)
+          $$
+
+          Tomando el valor absoluto para evitar obtener resultados negativos y desarrollando los determinantes se llega a:
+
+          $$ 
+            A = \frac{1}{2} \left| \left( \sum_{i=1}^{n-1}\left(x_{i}y_{i+1} - x_{i+1}y_{i} \right) \right) + \left( x_{n}y_{1} - x_{1}y_{n}  \right) \right| 
+          $$
+
+          Donde \( (x_{1}, y_{1} ) \) representa el primer vértice del polígono y \( (x_{n}, y_{n} ) \) representa el último.<br>
+
+          Centro de masas para un polígono irregular:
+
+          $$
+              \left(CM_x, CM_y \right) = 
+              \frac{1}{6A}
+              \left(
+              \begin{vmatrix} 
+                  x_1 & y_1 \\ x_2 & y_2 
+              \end{vmatrix}
+              \left(x_1 + x_2, y_1 + y_2 \right)
+              +
+              \begin{vmatrix} 
+                  x_2 & y_2 \\ x_3 & y_3 
+              \end{vmatrix}
+              \left(x_2 + x_3, y_2 + y_3 \right)
+              +
+              \cdots
+              +
+              \begin{vmatrix} 
+                  x_n & y_n \\ x_1 & y_1 
+              \end{vmatrix}
+              \left(x_n + x_1, y_n + y_1 \right)
+              \right)
+          $$
+
+
+          </div>
+    </td>
+    <td/>
+  </tr>
+</table>
+
+    <script>
+        var clicks = 0;
+        var polygon = new Polygon();
+        var closedPolygon = false;
+        var radiusStartCircle = 25;
+        var isTargeting = false;
+        var radiusTargetCircle = 8;
+
+        var canvas = document.getElementById('sampleCanvas');
+        var context = canvas.getContext('2d');
+        canvas.addEventListener('mousedown', handleMouseDownEvent  , false);
+        canvas.addEventListener('mousemove', handleMouseMoveEvent  , false);
+        canvas.addEventListener('dblclick' , handleDoubleClickEvent, false);
+    </script>  
+</body>
+</html>
+

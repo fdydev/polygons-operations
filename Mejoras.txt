@@ -1,0 +1,32 @@
+- Versión 2014-11-02
+
+	- Mejoras en la clase polígono:
+		- Se incluye un método para calcular el área mediante el produzco en cruz de los vértices, este método no necesita realizar una triangulación previa y por lo tanto es más sencillo y rápido.
+		- Se incluye un método para calcular el punto medio.
+		- Se incluye un método para calcular el círculo equivalente en área.
+		- Se incluye un método para calcular el círculo equivalente en perímetro.
+
+	- Mejoras en la interfaz:
+		- Se muestra el área del polígono en la pestaña de posición.
+		- Se muestra el punto medio del polígono en la pestaña de posición.
+		- Se muestra el círculo equivalente en área en la pestaña de posición.
+		- Se muestra el círculo equivalente en perímetro en la pestaña de posición.
+		- Se muestra un mensaje al usuario cuando ha conseguido dibujar un polígono cuya relación entre círculos equivalentes es próxima a la unidad.
+		- Se ha modificado el texto de ayuda dando una mejor explicación del funcionamiento.
+
+	- Se incluye la librería MathJax para representar ecuaciones matemáticas mediante LaTeX.	
+
+
+----------------
+
+ - Versión 2014-11-09
+
+ 	- Se muestra otra variante de la fórmula para el cálculo del área de un polínono irregular basada en el determinante de Gauss.
+ 	- Se muestra la fórmula para el cálculo del centro de masas de un polígono irregular de densidad constante.
+ 	- Se aumentan los márgenes de la derecha de todas las páginas para poder incluir controles en el futuro.
+ 	- Se muestran cuatro casillas de verificación en la página de posición para poder seleccionar la información dibujada en el lienzo:
+ 		- Círculo de igual área.
+ 		- Círuclo de igual perímetro.
+ 		- Punto medio.
+ 		- Centro de masas.
+ 		- Estos controles no funcionarán hasta la próxima versión.

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Posici&oacute;n</title>
+    <link href="css/estilo1.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/JavaScript" src="js/geometry.js"></script> 
+    <script type="text/JavaScript" src="js/painting.js"></script> 
+    <script type="text/JavaScript" src="js/intersection.js"></script> 
+
+  
+</head>
+
+<body class="body">
+
+<table width="1040" height="25" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="encabezado">
+  <tr>
+    <td width="260" bgcolor="#FFFFFF"><div   align="center"><a style="color:black" href="index.html"        >Introducci&oacute;n</a ></div></td>
+    <td width="260" bgcolor="#FFFFFF"><div   align="center"><a style="color:black" href="posicion.html"     >Posici&oacute;n</a>     </div></td>
+    <td width="260" bgcolor="#FFFFFF"><div   align="center"><a style="color:black" href="triangulacion.html">Triangulaci&oacute;n</a></div></td>
+    <td width="260" bgcolor="BurlyWood"><div align="center"><a style="color:black" href="interseccion.html" >Intersecci&oacute;n</a> </div></td>
+  </tr>
+</table>
+<table width="1040"  border="0" align="left" cellpadding="0" cellspacing="0" bgcolor="BurlyWood" class="encabezado">
+  <tr height = "490">
+    <td border ="1" align="left" valign="center">
+      <canvas id="sampleCanvas" width="800" height="450" style= "background:bisque; margin:20px"></canvas>
+    </td>
+  <tr>
+    <td width="100%" valign="top" bordercolor="0" style="padding:15px" >
+          <div align="justify"  >Se calculan los pol&iacute;gonos resultantes de la intersecci&oacute;n de dos pol&iacute;gonos irregulares. Para ello basta con marcar una serie de puntos en la superficie para crear el primer pol&iacute;gono, &eacute;ste se dar&aacute; por finalizado al realizar el &uacute;ltimo clic en el interior del c&iacute;rculo que contiene al primer punto. A continuaci&oacute;n se repite el proceso para crear el segundo pol&iacute;gono. Una vez creados ambos si existe intersecci&oacute;n entre ellos se mostrar&aacute;n autom&aacute;ticamente los pol&iacute;gonos resultantes de la misma. 
+          </div>
+    </td>
+  </tr>
+</table>
+
+    <script>
+        var clicks  = 0;
+        var clicks2 = 0;
+
+        var polygon1 = new Polygon();
+        var polygon2 = new Polygon();
+
+        var closedPolygon1 = false;
+        var closedPolygon2 = false;
+
+        var radiusStartCircle  = 25;
+        var radiusTargetCircle = 8;
+        var intersectionDone = false;
+
+        var canvas = document.getElementById('sampleCanvas');
+        var context = canvas.getContext('2d');
+        canvas.addEventListener('mousedown', handleMouseDownEvent  , false);
+        canvas.addEventListener('mousemove', handleMouseMoveEvent  , false);
+    </script>  
+</body>
+</html>
+

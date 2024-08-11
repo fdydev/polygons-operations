@@ -1,0 +1,95 @@
+<h<html>
+<head>
+   <title>Canvas segundo ejemplo</title>
+
+   <script type="text/JavaScript" src="geometry.js"></script> 
+
+<script>
+//Recibe un identificador del elemento canvas y carga el canvas
+//Devueve el contexto del canvas o FALSE si no ha podido conseguise
+function cargaContextoCanvas(idCanvas){
+   var elemento = document.getElementById(idCanvas);
+   if(elemento && elemento.getContext){
+      var contexto = elemento.getContext('2d');
+      if(contexto){
+         return contexto;
+      }
+   }
+   return FALSE;
+}
+
+window.onload = function(){
+   //Recibimos el elemento canvas
+   var contexto = cargaContextoCanvas('micanvas');
+   if(contexto){
+//Si tengo el contexto 
+//cambio el color de dibujo a azul
+contexto.fillStyle = '#6666ff';
+//dibujo un rectángulo azul
+contexto.fillRect(10,10,50,50);
+//cambio el color a amarillo con un poco de transparencia
+contexto.fillStyle = 'rgba(255,255,0,0.7)';
+//pinto un rectángulo amarillo semitransparente
+contexto.fillRect(35,35,50,50);
+
+
+
+
+var puntoA = new Point (0, 0);
+var puntoB = new Point (0, 10);
+var puntoC = new Point (10, 10);
+var puntoD = new Point (10, 0);
+
+var triangulo = new Triangle(puntoA, puntoB, puntoC);
+
+var areaTriangulo = triangulo.getArea();
+console.log("Area triangulo: " + areaTriangulo);
+
+var v1  = new Vector(puntoA, puntoB);
+var v2  = new Vector(puntoA, puntoC);
+
+console.log("Modulo v1: " + v1.getModule());
+console.log("Modulo v2: " + v2.getModule());
+
+console.log("Productor escalar: " + v1.getProductScalar(v2));
+
+var angulo = v1.getAngle(v2);
+
+console.log("Angulo (grados): " + angulo*180/Math.PI);
+
+var poligono = new Polygon();
+poligono.addPoint(puntoA);
+poligono.addPoint(puntoB);
+poligono.addPoint(puntoC);
+poligono.addPoint(puntoD);
+console.log("Numero de vertices: " + poligono.vertexNumber())
+
+var puntoAleatorio = new Point(5,5);
+
+var estaDentro = poligono.isInside(puntoAleatorio);
+
+if(estaDentro){
+   console.log("El punto aleatorio esta dentro del poligono.");
+}else{
+   console.log("El punto aleatorio esta fuera del poligono");
+}
+
+
+
+
+   }
+}
+
+
+</script>
+
+</head>
+
+<body>
+
+<canvas id="micanvas" width="100" height="100">
+Tu navegador no soporta canvas.
+</canvas>
+
+</body>
+</html>
