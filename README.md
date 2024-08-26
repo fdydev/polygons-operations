@@ -1,2 +1,3 @@
 # operaciones-con-poligonos
-Operaciones geométricas con polígonos, como: triangulación, intersección, etc.
+
+Geometric operations with polygons, such as: triangulation, intersection, etc.
